@@ -1,0 +1,37 @@
+{
+    "variables": {
+        "ssh_name": "packer",
+        "ssh_pass": "packer",
+        "hostname": "packerhost"
+    },
+  "builders": [{
+    "type": "virtualbox",
+    "guest_os_type": "Ubuntu_64",
+    "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.3-server-amd64.iso",
+    "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
+    "iso_checksum_type": "md5",
+    "ssh_username": "{{user `ssh_name`}}",
+    "ssh_password": "{{user `ssh_pass`}}",
+    "ssh_wait_timeout": "30m",
+    "http_directory" : "ubuntu_64",
+    "http_port_min" : 9001,
+    "http_port_max" : 9001,
+    "boot_command": [
+    "<esc><esc><enter><wait>",
+    "/install/vmlinuz noapic ",
+    "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+    "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+    "hostname={{user `hostname`}} ",
+    "fb=false debconf/frontend=noninteractive ",
+    "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+    "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+    "initrd=/install/initrd.gz -- <enter>"
+    ],
+    "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now"
+    }],
+   "post-processors" : [
+    {
+    "type": "vagrant"
+    }
+    ]
+}

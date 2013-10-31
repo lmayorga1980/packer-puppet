@@ -1,0 +1,37 @@
+{
+    "variables": {
+        "ssh_name": "vagrant",
+        "ssh_pass": "vagrant",
+        "hostname": "packerhost"
+    },
+  "builders": [{
+    "type": "virtualbox",
+    "guest_os_type": "RedHat_64",
+    "iso_url": "/Users/lmo0/isofiles/CentOS-6.4-x86_64-minimal.iso",
+    "iso_checksum": "4a5fa01c81cc300f4729136e28ebe600",
+    "iso_checksum_type": "md5",
+    "ssh_username": "{{user `ssh_name`}}",
+    "ssh_password": "{{user `ssh_pass`}}",
+    "ssh_wait_timeout": "90m",
+    "http_directory" : "http",
+    "ssh_port": 22,
+    "http_port_min" : 9001,
+    "http_port_max" : 9001,
+    "boot_command": [
+    "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+    ],
+    "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
+    "vboxmanage": [
+    [
+    "modifyvm",
+    "{{.Name}}",
+    "--memory",
+    "4800"
+    ]]
+    }],
+    "post-processors" : [
+    {
+    "type": "vagrant"
+    }
+    ]
+}

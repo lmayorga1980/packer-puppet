@@ -10,6 +10,14 @@ Packer reads a template configuration file in json format and installs the OS fr
 
 
 1. Download Packer from Packer.io [Download](http://www.packer.io/downloads.html) 
-2. Run ```packer build virtualbox.json```
+2. Run ```packer build <template_name>.json```
 
 ![packer ouput](http://github.com/lmayorga1980/packer-demo/raw/master/packer-image.png)
+
+Tips
+====
+
+1. The kickstart files handle most of the basic installation configuration. Don't overkill
+2. The <template>.json file user needs to match the default user created on the kickstart file
+
+

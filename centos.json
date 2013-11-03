@@ -1,4 +1,17 @@
 {
+    "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/vagrant.sh"
+      ],
+      "override": {
+        "virtualbox": {
+          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
+        }
+      }
+    }
+  ],
     "variables": {
         "ssh_name": "vagrant",
         "ssh_pass": "vagrant",

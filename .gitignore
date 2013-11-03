@@ -1,1 +1,4 @@
 packer_cache/
+output-virtualbox/
+*.box
+*.vbox

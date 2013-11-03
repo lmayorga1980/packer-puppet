@@ -1,4 +1,17 @@
 {
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/vagrant.sh"
+      ],
+      "override": {
+        "virtualbox": {
+          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
+        }
+      }
+    }
+  ],
     "variables": {
         "ssh_name": "vagrant",
         "ssh_pass": "vagrant",
@@ -16,6 +29,8 @@
     "http_directory" : "http",
     "http_port_min" : 9001,
     "http_port_max" : 9001,
+    "guest_additions_path": "VBoxGuestAdditions_4.3.2.iso",
+    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.2.iso",
     "boot_command": [
     "<esc><esc><enter><wait>",
     "/install/vmlinuz noapic ",

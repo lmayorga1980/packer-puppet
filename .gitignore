@@ -2,3 +2,5 @@ packer_cache/
 output-virtualbox/
 *.box
 *.vbox
+http/centos/
+http/oracle/

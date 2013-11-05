@@ -3,6 +3,7 @@
     {
       "type": "shell",
       "scripts": [
+        "scripts/virtualbox.sh",
         "scripts/vagrant.sh"
       ],
       "override": {
@@ -25,6 +26,8 @@
     "iso_checksum_type": "md5",
     "ssh_username": "{{user `ssh_name`}}",
     "ssh_password": "{{user `ssh_pass`}}",
+    "guest_additions_path": "VBoxGuestAdditions_4.3.2.iso",
+    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.2.iso",
     "ssh_wait_timeout": "90m",
     "http_directory" : "http",
     "ssh_port": 22,

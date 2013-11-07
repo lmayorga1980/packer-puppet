@@ -1,5 +1,5 @@
 # Bail if we are not running inside VirtualBox.
-[ `facter virtual` == "virtualbox" ] || {
+[ -f /etc/init.d/vboxadd ] || {
   exit 0
 }
 

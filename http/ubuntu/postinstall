@@ -1,0 +1,5 @@
+cat > /etc/sudoers.d/vagrant << EOM
+Defaults:vagrant !requiretty
+vagrant        ALL=(ALL)       NOPASSWD: ALL
+EOM
+chmod 0440 /etc/sudoers.d/vagrant

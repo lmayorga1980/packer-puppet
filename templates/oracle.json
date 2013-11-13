@@ -27,10 +27,10 @@
     "ssh_username": "{{user `ssh_name`}}",
     "ssh_password": "{{user `ssh_pass`}}",
     "ssh_wait_timeout": "90m",
-    "http_directory" : "http",
     "guest_additions_path": "VBoxGuestAdditions_4.3.2.iso",
     "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.2.iso",
     "ssh_port": 22,
+    "http_directory" : "http",
     "http_port_min" : 9001,
     "http_port_max" : 9001,
     "boot_command": [
@@ -44,7 +44,35 @@
     "--memory",
     "4800"
     ]]
-    }],
+    },
+    {
+      "type": "vmware",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/oracle.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 20480,
+      "guest_os_type": "rhel6-64",
+      "http_directory": "http",
+      "http_port_min" : 9001,
+      "http_port_max" : 9001,
+      "iso_checksum": "744fc1663519b4d54da1345669fcee52",
+      "iso_checksum_type": "md5",
+      "iso_url": "/Users/lmo0/isofiles/V37084-01.iso",
+      "skip_compaction": true,
+      "ssh_username": "{{user `ssh_name`}}",
+      "ssh_password": "{{user `ssh_pass`}}",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "90m",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "tools_upload_flavor": "linux",
+      "vmx_data": {
+        "memsize": "4080",
+        "numvcpus": "2",
+        "cpuid.coresPerSocket": "1"
+      }
+    }
+    ],
     "post-processors" : [
     {
     "type": "vagrant"

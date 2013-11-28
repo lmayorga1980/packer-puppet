@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<domain-template-descriptor>
+<!-- 
+      The values in this example silent.xml file corresponds to a default installation
+      of Oracle JRockit JDK R28.2 for Java SE 6 with Oracle JRockit Mission Control 4.1.0
+      on Windows 32-bit x86.
+--> 
+<input-fields>
+<!-- 
+      Installation directory
+        The full pathname for the directory where you want to install your product.
+        This option is available on all platforms.
+--> 
+<data-value name="USER_INSTALL_DIR" value="<%= @home %>" /> 
+<!-- 
+      Optional installation of Demos and Samples
+        Use "true", or "yes", to install this optional component.
+        Use "false", or "no", to skip this optional component. The default is "false". 
+        This option is available on all platforms.
+--> 
+<data-value name="INSTALL_DEMOS_AND_SAMPLES" value="false" /> 
+<!-- 
+      Optional installation of Source Code
+        Use "true", or "yes", to install this optional component.
+        Use "false", or "no", to skip this optional component. The default is "false". 
+        This option is available on all platforms.
+--> 
+<data-value name="INSTALL_SOURCE_CODE" value="false" /> 
+<!-- 
+      Optional installation of Public JRE
+        Use "true", or "yes", to install this optional component.
+        Use "false", or "no", to skip this optional component. The default is "true". 
+        This option is available for Oracle JRockit JDK installers on Windows
+-->  
+ <data-value name="INSTALL_PUBLIC_JRE" value="false" /> 
+<!-- 
+      Optional override of default installation directory for Public JRE
+        This option is available for Oracle JRockit JDK installers on Windows
+
+<data-value name="PUBLIC_JRE_INSTALL_DIR" value="" /> --> 
+</input-fields>
+</domain-template-descriptor>

@@ -4,3 +4,4 @@ output-virtualbox/
 *.vbox
 http/centos/
 http/oracle/
+vagrant/oracle/.vagrant

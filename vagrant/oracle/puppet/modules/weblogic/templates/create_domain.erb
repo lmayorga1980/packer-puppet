@@ -1,0 +1,11 @@
+#!/usr/bin/python
+import os, sys
+readTemplate('<%= @mdw %>/wlserver_10.3/common/templates/domains/wls.jar')
+cmo.setName('<%= @domain %>')
+cd('/Security/<%= @domain %>/User/weblogic')
+cmo.setPassword('<%= @password %>')
+cd('/Server/AdminServer')
+cmo.setListenPort(<%= @admin_port %>)
+writeDomain('<%= @domain_home %>')
+closeTemplate()
+exit()

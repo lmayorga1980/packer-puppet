@@ -35,3 +35,7 @@ Oracle Linux Example
 2. Download JRockit to **files** folder (**jrockit-jdk1.6.0_45-R28.2.7-4.1.0-64.bin**) 
 2. Add Vagrant Box ```vagrant box add packer packer_virtualbox_virtualbox.box```
 3. Run Vagrant Box ```vagrant up``` (Run from **vagrat/oracle**) 
+4. Wait for Puppet Enterprise Installation...
+5. SSH to Virtual Machine (```vagrant ssh```)
+6. Execute ```sudo /usr/local/bin/puppet agent -t```
+7. Restart the virtual machine ```sudo reboot```

@@ -1,0 +1,111 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Packer-demo</title>
+  <meta name="description" content="Repository to track changes on Packer.io utility">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Packer-demo</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Repository to track changes on Packer.io utility</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/lmayorga1980/packer-demo/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/lmayorga1980/packer-demo/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/lmayorga1980/packer-demo" class="code">View Packer-demo on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h3>
+<a name="packeriovagrantpuppet-demo" class="anchor" href="#packeriovagrantpuppet-demo"><span class="octicon octicon-link"></span></a>Packer.io/Vagrant/Puppet Demo</h3>
+
+<p>Create a virtual machine image from scratch. Based on <a>https://github.com/smerrill/packer-templates</a></p>
+
+<h3>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
+
+<ol>
+<li>Download Packer from Packer.io <a href="http://www.packer.io/downloads.html">Download</a>
+</li>
+<li>Download Vagrant <a href="http://downloads.vagrantup.com/">Download</a>
+</li>
+<li>Download OS ISO files for Packer execution</li>
+</ol><h3>
+<a name="how-do-i-run-it" class="anchor" href="#how-do-i-run-it"><span class="octicon octicon-link"></span></a>How do i run it?</h3>
+
+<p>Packer reads a template configuration file in json format and installs the OS from the ISO file, applies the OS configuration from a .cfg file and package everything in a vagrant box format.</p>
+
+<ol>
+<li>Modify the templates if you want to use full http urls or specific local paths for iso files </li>
+<li>Verify the <strong>http</strong> directory that contains the kickstart files for custom changes.</li>
+<li>For RedHat distributions you need to uncompress the .iso files into the http directory or you might want to point to different location.</li>
+<li>Run <code>packer build &lt;template_name&gt;.json</code>
+</li>
+</ol><p><img src="http://github.com/lmayorga1980/packer-demo/raw/master/packer-image.png" alt="packer ouput"></p>
+
+<h3>
+<a name="tips" class="anchor" href="#tips"><span class="octicon octicon-link"></span></a>Tips</h3>
+
+<ol>
+<li>The kickstart files handle most of the basic installation configuration. Don't overkill</li>
+<li>The .json file user needs to match the default user created on the kickstart file</li>
+</ol><h3>
+<a name="oracle-linux-example" class="anchor" href="#oracle-linux-example"><span class="octicon octicon-link"></span></a>Oracle Linux Example</h3>
+
+<ol>
+<li>Create Oracle Linux Image <code>packer build -only=virtualbox templates\oracle.json</code>
+</li>
+<li>Download JRockit to <strong>files</strong> folder (<strong>jrockit-jdk1.6.0_45-R28.2.7-4.1.0-64.bin</strong>) </li>
+<li>Add Vagrant Box <code>vagrant box add packer packer_virtualbox_virtualbox.box</code>
+</li>
+<li>Run Vagrant Box <code>vagrant up</code> (Run from <strong>vagrat/oracle</strong>) </li>
+<li>Wait for Puppet Enterprise Installation...</li>
+<li>SSH to Virtual Machine (<code>vagrant ssh</code>)</li>
+<li>Execute <code>sudo /usr/local/bin/puppet agent -t</code>
+</li>
+<li>Restart the virtual machine <code>sudo reboot</code>
+</li>
+</ol>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/lmayorga1980" class="avatar"><img src="https://0.gravatar.com/avatar/123f714be5ff58983923fdd1eb1a734f?d=https%3A%2F%2Fidenticons.github.com%2F6693dc960155789e4aee6ceb101a3b13.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/lmayorga1980">lmayorga1980</a> maintains <a href="https://github.com/lmayorga1980/packer-demo">Packer-demo</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/lmayorga1980/packer-demo/tarball/master" class="tar">tar</a><a href="https://github.com/lmayorga1980/packer-demo/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>

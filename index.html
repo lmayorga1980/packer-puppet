@@ -11,7 +11,7 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/script.js"></script>
 
-  <title>Packer-demo</title>
+  <title>PaVaPe</title>
   <meta name="description" content="Repository to track changes on Packer.io utility">
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,36 +22,38 @@
 
   <div class="wrapper">
     <header>
-      <h1 class="title">Packer-demo</h1>
+      <h1 class="title">PaVaPe</h1>
     </header>
     <div id="container">
       <p class="tagline">Repository to track changes on Packer.io utility</p>
       <div id="main" role="main">
         <div class="download-bar">
         <div class="inner">
-          <a href="https://github.com/lmayorga1980/packer-demo/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/lmayorga1980/packer-demo/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/lmayorga1980/packer-demo" class="code">View Packer-demo on GitHub</a>
+          <a href="https://github.com/lmayorga1980/pavape-demo/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/lmayorga1980/pavape-demo/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/lmayorga1980/pavape-demo" class="code">View PaVaPe on GitHub</a>
         </div>
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
           <h3>
-<a name="packeriovagrantpuppet-demo" class="anchor" href="#packeriovagrantpuppet-demo"><span class="octicon octicon-link"></span></a>Packer.io/Vagrant/Puppet Demo</h3>
+<a name="packervagrantpuppet-pe-demo" class="anchor" href="#packervagrantpuppet-pe-demo"><span class="octicon octicon-link"></span></a>Packer/Vagrant/Puppet PE Demo</h3>
 
-<p>Create a virtual machine image from scratch. Based on <a>https://github.com/smerrill/packer-templates</a></p>
+<p>Create a virtual machine box vagrant ready.(CentOS, Ubuntu, OracleLinux). Based on <a>https://github.com/smerrill/packer-templates</a></p>
 
 <h3>
 <a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
 
 <ol>
-<li>Download Packer from Packer.io <a href="http://www.packer.io/downloads.html">Download</a>
+<li>Download <a href="http://www.packer.io/downloads.html">Packer</a>
 </li>
-<li>Download Vagrant <a href="http://downloads.vagrantup.com/">Download</a>
+<li>Download <a href="http://downloads.vagrantup.com/">Vagrant</a>
 </li>
-<li>Download OS ISO files for Packer execution</li>
+<li>Download <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a> or <a href="http://www.vmware.com/products/fusion-professional/">VMWare Fusion</a>
+</li>
+<li>Download Operating System .iso files for Packer.</li>
 </ol><h3>
-<a name="how-do-i-run-it" class="anchor" href="#how-do-i-run-it"><span class="octicon octicon-link"></span></a>How do i run it?</h3>
+<a name="how-does-it-work" class="anchor" href="#how-does-it-work"><span class="octicon octicon-link"></span></a>How does it work?</h3>
 
 <p>Packer reads a template configuration file in json format and installs the OS from the ISO file, applies the OS configuration from a .cfg file and package everything in a vagrant box format.</p>
 
@@ -64,12 +66,6 @@
 </ol><p><img src="http://github.com/lmayorga1980/packer-demo/raw/master/packer-image.png" alt="packer ouput"></p>
 
 <h3>
-<a name="tips" class="anchor" href="#tips"><span class="octicon octicon-link"></span></a>Tips</h3>
-
-<ol>
-<li>The kickstart files handle most of the basic installation configuration. Don't overkill</li>
-<li>The .json file user needs to match the default user created on the kickstart file</li>
-</ol><h3>
 <a name="oracle-linux-example" class="anchor" href="#oracle-linux-example"><span class="octicon octicon-link"></span></a>Oracle Linux Example</h3>
 
 <ol>
@@ -85,13 +81,19 @@
 </li>
 <li>Restart the virtual machine <code>sudo reboot</code>
 </li>
+</ol><h3>
+<a name="tips" class="anchor" href="#tips"><span class="octicon octicon-link"></span></a>Tips</h3>
+
+<ol>
+<li>The kickstart files handle most of the basic installation configuration. Don't overkill</li>
+<li>The .json file user needs to match the default user created on the kickstart file</li>
 </ol>
         </article>
       </div>
     </div>
     <footer>
       <div class="owner">
-      <p><a href="https://github.com/lmayorga1980" class="avatar"><img src="https://0.gravatar.com/avatar/123f714be5ff58983923fdd1eb1a734f?d=https%3A%2F%2Fidenticons.github.com%2F6693dc960155789e4aee6ceb101a3b13.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/lmayorga1980">lmayorga1980</a> maintains <a href="https://github.com/lmayorga1980/packer-demo">Packer-demo</a></p>
+      <p><a href="https://github.com/lmayorga1980" class="avatar"><img src="https://0.gravatar.com/avatar/123f714be5ff58983923fdd1eb1a734f?d=https%3A%2F%2Fidenticons.github.com%2F6693dc960155789e4aee6ceb101a3b13.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/lmayorga1980">lmayorga1980</a> maintains <a href="https://github.com/lmayorga1980/pavape-demo">PaVaPe</a></p>
 
 
       </div>
@@ -102,7 +104,7 @@
   </div>
   <div class="current-section">
     <a href="#top">Scroll to top</a>
-    <a href="https://github.com/lmayorga1980/packer-demo/tarball/master" class="tar">tar</a><a href="https://github.com/lmayorga1980/packer-demo/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <a href="https://github.com/lmayorga1980/pavape-demo/tarball/master" class="tar">tar</a><a href="https://github.com/lmayorga1980/pavape-demo/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
     <p class="name"></p>
   </div>
 

@@ -5,6 +5,7 @@
   - defaults
   - "%{clientcert}"
   - "%{environment}"
+  - "%{operatingsystem}"
   - common
 
 :yaml:

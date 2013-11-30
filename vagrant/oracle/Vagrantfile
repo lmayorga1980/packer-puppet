@@ -1,13 +1,8 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
 
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
+
 	config.vm.provider :virtualbox do |vb|
 		vb.gui = false
 		vb.customize ["modifyvm", :id, "--memory", "4048"]
@@ -15,28 +10,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 	config.vm.define :master do |master|
 		master.ssh.forward_x11 = true
-		master.vm.box      = "packer"
-		master.vm.hostname = "local.puppetmaster"
-		master.vm.synced_folder "./files", "/vagrant_data"
-		master.vm.synced_folder "./puppet/modules", "/puppet_modules"
-		master.vm.network   :private_network, ip: "10.10.11.10"
-		master.vm.provision :shell, :path => "bootstrap-master.sh"
+		master.vm.box      = 'packer'
+		master.vm.hostname = 'local.puppetmaster'
+		master.vm.synced_folder './files', '/vagrant_data'
+		master.vm.synced_folder './puppet/modules', '/puppet_modules'
+		master.vm.synced_folder './puppet/manifests', '/puppet_manifests'
+		master.vm.network   :private_network, ip: '10.10.11.10'
+		master.vm.provision :shell, :path => 'bootstrap-master.sh'
 	end
-
-	config.vm.define :weblog1 do |weblog1|
-		weblog1.vm.box      = "packer"
-		weblog1.vm.hostname = "weblogic-srv1"
-		weblog1.vm.synced_folder "../oracle-files", "/vagrant_data"
-		weblog1.vm.network :private_network, ip: "10.10.11.11"
-		weblog1.vm.provision :shell, :path => "bootstrap-client.sh"
-	end
-
-	config.vm.define :osb do |cnf|
-		cnf.vm.box      = "packer"
-		cnf.vm.hostname = "osbhost1"
-		#cnf.vm.synced_folder "D:/1_SOFTWARE/0_PROVISIONING/instaladores", "/vagrant_data"
-		cnf.vm.network :private_network, ip: "10.10.11.12"
-	end
-  
-
 end

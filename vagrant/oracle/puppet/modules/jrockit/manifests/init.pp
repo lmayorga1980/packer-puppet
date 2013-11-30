@@ -1,6 +1,6 @@
 # == Class:  jrockit
 #
-# Installs JDK
+# Installs Oracle Java SDK 
 #
 # == Authors
 #
@@ -10,8 +10,8 @@ class jrockit{
 
   case $::osfamily {
 
-    'RedHat' : { include jrockit::redhat  }
-    'Windows': { include jrockit::windows }
+    'RedHat'  : { include jrockit::redhat  }
+    
     default  : { fail("Module ${module_name} is not supported on ${::osfamily}")}
   }
 }

@@ -1,6 +1,4 @@
-import 'nodes'
 
-#TODO:what about other host that do not require these users. (i.e puppet master)
   group { 'oinstall':
     ensure => 'present',
     gid    => 401,
@@ -18,7 +16,7 @@ import 'nodes'
     name        => 'oracle',
     comment     => '"Oracle Owner"',
     home        => '/home/oracle',
-    groups      => ['dba','admin'],
+    groups      => ['dba'],
     managehome  => true,
     shell       => '/bin/bash',
     require     => Group['oinstall'],
@@ -31,3 +29,5 @@ import 'nodes'
   Exec {
     path => '/usr/bin:/bin:/usr/sbin:/sbin'
   }
+
+  hiera_include('classes')

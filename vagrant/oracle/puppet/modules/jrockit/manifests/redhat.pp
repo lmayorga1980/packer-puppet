@@ -1,8 +1,4 @@
-class jrockit::redhat(
-   $cfg  = $jrockit::params::cfg,
-   $pkg  = $jrockit::params::pkg,
-   $home = $jrockit::params::home
-   ) inherits jrockit::params{
+class jrockit::redhat( $cfg  = 'jrockit-silent.xml', $pkg , $home ){
 
     file { ['/opt/oracle','/opt/oracle/java']:
       ensure => directory,
@@ -12,7 +8,7 @@ class jrockit::redhat(
       before => Exec['install-jrockit']
     }
 
-    file { $cfg:
+    file { $cfg :
       ensure  => present,
       name    => "/tmp/${cfg}",
       owner   => 'oracle',
@@ -21,14 +17,14 @@ class jrockit::redhat(
       content => template('jrockit/silent.erb')
     }
 
-    file { 'java.sh':
+    file { 'java.sh' :
       ensure  => present,
       name    => '/etc/profile.d/java.sh',
-      mode    => '0775',
+      mode    => '0644',
       content => template('jrockit/set_java_home.erb')
     }
 
-    file { $pkg:
+    file { $pkg :
       ensure => present,
       name   => "/tmp/${pkg}",
       source => "/vagrant_data/${pkg}",
@@ -37,7 +33,7 @@ class jrockit::redhat(
       mode   => '0775'
     }
 
-    exec {'install-jrockit':
+    exec { 'install-jrockit' :
       creates   => $home,
       command   => "/tmp/${pkg} -mode=silent -silent_xml=${cfg} -log=${pkg}.log",
       user      => 'oracle',

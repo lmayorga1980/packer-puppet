@@ -38,9 +38,10 @@ cp /vagrant_data/hiera.yaml /etc/puppetlabs/puppet -f
 mkdir /hiera
 cp -R /vagrant_data/hiera/* /hiera
 cp /vagrant_data/autosign.conf /etc/puppetlabs/puppet
+
+cp -R /puppet_manifests/* /etc/puppetlabs/puppet/manifests
 cp -R /puppet_modules/* /etc/puppetlabs/puppet/modules
-echo "hiera_include('classes')" >> /etc/puppetlabs/puppet/manifests/site.pp
-echo '###'
+
 
 echo '###'
 echo 'Use the following credentials for the puppet console...'

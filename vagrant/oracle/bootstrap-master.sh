@@ -45,8 +45,8 @@ cp -R /puppet_modules/* /etc/puppetlabs/puppet/modules
 
 echo '###'
 echo 'Use the following credentials for the puppet console...'
-echo 'user: admin@nreca.coop'
-echo 'pwd: nrecaadmin'
+echo 'user: admin@demo.com'
+echo 'pwd: admin123'
 echo '###'
 
 

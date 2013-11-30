@@ -22,7 +22,7 @@ Packer reads a template configuration file in json format and installs the OS fr
 
 ### Oracle Linux Example
 
-1. Create Oracle Linux Image ```packer build -only=virtualbox templates\oracle.json```
+1. Create Oracle Linux Image ```packer build -only=virtualbox templates/oracle.json```
 2. Download JRockit to **files** folder (**jrockit-jdk1.6.0_45-R28.2.7-4.1.0-64.bin**) 
 2. Add Vagrant Box ```vagrant box add packer packer_virtualbox_virtualbox.box```
 3. Run Vagrant Box ```vagrant up``` (Run from **vagrat/oracle**) 

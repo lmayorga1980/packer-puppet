@@ -1,20 +1,24 @@
-Packer.io Demo
+Packer.io/Vagrant/Puppet Demo
 ===========
 
 Create a virtual machine image from scratch. Based on [https://github.com/smerrill/packer-templates]("https://github.com/smerrill/packer-templates")
 
+Requirements
+===========
+
+1. Download Packer from Packer.io [Download](http://www.packer.io/downloads.html)
+2. Download Vagrant [Download](http://downloads.vagrantup.com/)
+3. Download OS ISO files for Packer execution
 
 How do i run it?
 ==============
 
 Packer reads a template configuration file in json format and installs the OS from the ISO file, applies the OS configuration from a .cfg file and package everything in a vagrant box format.
 
-
-1. Download Packer from Packer.io [Download](http://www.packer.io/downloads.html)
-2. Modify the templates if you want to use full http urls or specific local paths for iso files 
-3. Verify the **http** directory that contains the kickstart files for custom changes.
-4. For RedHat distributions you need to uncompress the .iso files into the http directory or you might want to point to different location.
-5. Run ```packer build <template_name>.json```
+1. Modify the templates if you want to use full http urls or specific local paths for iso files 
+2. Verify the **http** directory that contains the kickstart files for custom changes.
+3. For RedHat distributions you need to uncompress the .iso files into the http directory or you might want to point to different location.
+4. Run ```packer build <template_name>.json```
 
 ![packer ouput](http://github.com/lmayorga1980/packer-demo/raw/master/packer-image.png)
 
@@ -24,9 +28,10 @@ Tips
 1. The kickstart files handle most of the basic installation configuration. Don't overkill
 2. The <template>.json file user needs to match the default user created on the kickstart file
 
-Current OS Support
-=====
+Oracle Linux Example
+======
 
-* Ubuntu
-* CentOS
-* Oracle Linux
+1. Create Oracle Linux Image ```packer build -only=virtualbox templates\oracle.json```
+2. Download JRockit to **files** folder (**jrockit-jdk1.6.0_45-R28.2.7-4.1.0-64.bin**) 
+2. Add Vagrant Box ```vagrant box add packer packer_virtualbox_virtualbox.box```
+3. Run Vagrant Box ```vagrant up``` (Run from **vagrat/oracle**) 

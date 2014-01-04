@@ -1,0 +1,50 @@
+{
+    "variables": {
+        "ssh_name": "vagrant",
+        "ssh_pass": "vagrant"
+    },
+  "builders": [{
+    "type": "virtualbox-iso",
+    "iso_url": "/Users/lmo0/isofiles/en_windows_server_2008_r2_with_sp1_vl_build_x64_dvd_617403.iso",
+    "iso_checksum": "8d397b69135d207452a78c3c3051339d",
+    "iso_checksum_type": "md5",
+    "guest_os_type": "Windows2008_64",
+    "disk_size": 61440,
+    "headless": false,
+    "ssh_username": "{{user `ssh_name`}}",
+    "ssh_password": "{{user `ssh_pass`}}",
+    "ssh_wait_timeout": "2h",
+    "http_directory" : "http",
+    "guest_additions_path": "VBoxGuestAdditions_4.3.6.iso",
+    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.6.iso",
+    "boot_wait": "2m",
+    "floppy_files": [
+      "./http/cfg_windows/Autounattend.xml",
+      "./http/cfg_windows/win-updates.ps1",
+      "./http/cfg_windows/openssh.ps1",
+      "./http/cfg_windows/oracle-cert.cer"
+    ],
+    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+    "vboxmanage": [
+     ["modifyvm", "{{.Name}}", "--memory", "4800"]
+    ]
+    }],
+    "provisioners": [{
+      "type": "shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+      "scripts": [
+        "./scripts/vm-guest-tools.bat",
+        "./scripts/puppet-enterprise.bat",
+        "./scripts/vagrant-ssh.bat"
+     ]
+    }, {
+      "type": "shell", "inline": ["rm -rf /tmp/*"]
+    }],
+   "post-processors" : [
+    {
+    "type": "vagrant",
+    "output": "win2008_r2_core_{{.Provider}}.box"
+    }
+    ]
+}

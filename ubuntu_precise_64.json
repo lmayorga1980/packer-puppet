@@ -7,7 +7,7 @@
         "scripts/vagrant.sh"
       ],
       "override": {
-        "virtualbox": {
+        "virtualbox-iso": {
           "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         }
       }
@@ -19,7 +19,7 @@
         "hostname": "packerhost"
     },
   "builders": [{
-    "type": "virtualbox",
+    "type": "virtualbox-iso",
     "guest_os_type": "Ubuntu_64",
     "iso_url": "/Users/lmo0/isofiles/ubuntu-12.04.3-server-amd64.iso",
     "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
@@ -28,11 +28,11 @@
     "ssh_password": "{{user `ssh_pass`}}",
     "ssh_port": 22,
     "ssh_wait_timeout": "90m",
-    "http_directory" : "http",
+    "http_directory" : "http/cfg_ubuntu",
     "http_port_min" : 9001,
     "http_port_max" : 9001,
-    "guest_additions_path": "VBoxGuestAdditions_4.3.2.iso",
-    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.2.iso",
+    "guest_additions_path": "VBoxGuestAdditions_4.3.6.iso",
+    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.6.iso",
     "boot_command": [
     "<esc><esc><enter><wait>",
     "/install/vmlinuz noapic ",
@@ -46,16 +46,15 @@
     ],
     "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
     "vboxmanage": [
-    [
-    "modifyvm",
-    "{{.Name}}",
-    "--memory",
-    "4800"
-    ]]
+    ["modifyvm", "{{.Name}}", "--memory", "4800"],
+    ["modifyvm", "{{.Name}}", "--cpus", "2"]
+    ]
     }],
    "post-processors" : [
     {
-    "type": "vagrant"
+    "type": "vagrant",
+    "keep_input_artifact": false,
+    "output": "ubuntu_precise_64{{.Provider}}.box"
     }
     ]
 }

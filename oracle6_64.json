@@ -7,7 +7,7 @@
         "scripts/vagrant.sh"
       ],
       "override": {
-        "virtualbox": {
+        "virtualbox-iso": {
           "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         }
       }
@@ -19,7 +19,7 @@
         "hostname": "packerhost"
     },
   "builders": [{
-    "type": "virtualbox",
+    "type": "virtualbox-iso",
     "guest_os_type": "RedHat_64",
     "iso_url": "/Users/lmo0/isofiles/V37084-01.iso",
     "iso_checksum": "744fc1663519b4d54da1345669fcee52",
@@ -27,26 +27,23 @@
     "ssh_username": "{{user `ssh_name`}}",
     "ssh_password": "{{user `ssh_pass`}}",
     "ssh_wait_timeout": "90m",
-    "guest_additions_path": "VBoxGuestAdditions_4.3.2.iso",
-    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.2.iso",
+    "guest_additions_path": "VBoxGuestAdditions_4.3.6.iso",
+    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.6.iso",
     "ssh_port": 22,
     "http_directory" : "http",
     "http_port_min" : 9001,
     "http_port_max" : 9001,
     "boot_command": [
-    "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/oracle.cfg<enter><wait>"
+    "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/cfg_oracle/oracle.cfg<enter><wait>"
     ],
     "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
     "vboxmanage": [
-    [
-    "modifyvm",
-    "{{.Name}}",
-    "--memory",
-    "4800"
-    ]]
+    ["modifyvm","{{.Name}}","--memory","4800"],
+    ["modifyvm","{{.Name}}","--cpus","2"]
+    ]
     },
     {
-      "type": "vmware",
+      "type": "vmware-iso",
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/oracle.cfg<enter><wait>"
       ],
@@ -75,7 +72,9 @@
     ],
     "post-processors" : [
     {
-    "type": "vagrant"
+    "type": "vagrant",
+    "keep_input_artifact": false,
+    "output": "oracle6_64{{.Provider}}.box"
     }
     ]
 }

@@ -45,9 +45,9 @@
     {
       "type": "vmware-iso",
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/oracle.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/cfg_oracle/oracle.cfg<enter><wait>"
       ],
-      "boot_wait": "10s",
+      "boot_wait": "30s",
       "disk_size": 20480,
       "guest_os_type": "rhel6-64",
       "http_directory": "http",
@@ -64,9 +64,10 @@
       "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "tools_upload_flavor": "linux",
       "vmx_data": {
-        "memsize": "4080",
+        "memsize": "2048",
         "numvcpus": "2",
-        "cpuid.coresPerSocket": "1"
+        "cpuid.coresPerSocket": "1",
+        "scsi0.virtualDev": "lsisas1068"
       }
     }
     ],
@@ -74,7 +75,7 @@
     {
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "oracle6_64{{.Provider}}.box"
+    "output": "oracle6_64_{{.Provider}}.box"
     }
     ]
 }

@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 	config.vm.define :master do |master|
 		master.ssh.forward_x11 = true
-		master.vm.box      = 'packer'
+		master.vm.box      = 'oracle6_64'
 		master.vm.hostname = 'local.puppetmaster'
 		master.vm.synced_folder './files', '/vagrant_data'
 		master.vm.synced_folder './puppet/modules', '/puppet_modules'

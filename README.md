@@ -7,32 +7,40 @@ Create a virtual machine box vagrant ready.(CentOS, Ubuntu, OracleLinux, Windows
 
 ### Requirements
 
-1. [Packer 0.5 or later](http://www.packer.io/downloads.html)
-2. [Vagrant 1.4.2 or later](http://downloads.vagrantup.com/)
-3. [VirtualBox 4.3.6 or later](https://www.virtualbox.org/wiki/Downloads) or [VMWare Fusion](http://www.vmware.com/products/fusion-professional/)
-3. Download Operating System .iso files for Packer.
+* [Packer 0.5 or later](http://www.packer.io/downloads.html)
+* [Vagrant 1.4.2 or later](http://downloads.vagrantup.com/)
+* [VirtualBox 4.3.6 or later](https://www.virtualbox.org/wiki/Downloads) or [VMWare Fusion](http://www.vmware.com/products/fusion-professional/)
+* Specific ISO files for each OS.
 
 ### How does it work?
 
 Packer reads a template configuration file in json format and installs the OS from the ISO file, applies the OS configuration from a .cfg file and package everything in a vagrant box format.
 
-1. Modify the templates if you want to use full http urls or specific local paths for iso files 
-2. Verify the **http** directory that contains the kickstart files for custom changes.
-3. For RedHat distributions you need to uncompress the .iso files into the http directory or you might want to point to different location.
-4. Run `packer build <template_name>.json`
+* Modify the templates if you want to use full http urls or specific local paths for iso files. 
+* Verify the **http** directory that contains the kickstart files for custom changes.
+* For RedHat distributions you need to uncompress the .iso files into the http directory or you might want to point to different location.
+* Run `packer build <template_name>.json` 
 
 ![packer ouput](http://github.com/lmayorga1980/packer-demo/raw/master/packer-image.png)
 
 ### Oracle Linux Example
 
-1. Create Oracle Linux Image `packer build -only=virtualbox-iso oracle.json`
-2. Download JRockit to **files** folder (**jrockit-jdk1.6.0_45-R28.2.7-4.1.0-64.bin**) 
-2. Add Vagrant Box `vagrant box add packer packer_virtualbox_virtualbox.box`
-3. Run Vagrant Box `vagrant up` (Run from **vagrat/oracle**) 
-4. Wait for Puppet Enterprise Installation...
-5. SSH to Virtual Machine (`vagrant ssh`)
-6. Execute `sudo /usr/local/bin/puppet agent -t`
-7. Restart the virtual machine `sudo reboot`
+* Create Oracle Linux Image `packer build -only=virtualbox-iso oracle.json`
+* Download JRockit to **files** folder (**jrockit-jdk1.6.0_45-R28.2.7-4.1.0-64.bin**) 
+* Add Vagrant Box `vagrant box add oracle6_64 oracle6_64_virtualbox.box`
+* Run Vagrant Box `vagrant up` (Run from **vagrant/oracle**) 
+* Wait for Puppet Enterprise Installation...
+* SSH to Virtual Machine (`vagrant ssh`)
+* Execute `sudo /usr/local/bin/puppet agent -t`
+* Restart the virtual machine `sudo reboot`
+
+### Windows 2008 R2 Example
+
+* Download Windows 2008 R2 ISO Image from MSDN and change your .json file accordinly. 
+* Create Windows 2008 R2 Image `packer build -only=virtualbox-iso win2008r2core.json`
+* Add Vagrant Box `vagrant box add win2008r2core win2008_r2_core_virtualbox.box`
+* Run Vagrant Box `vagrant up` (Run from **vagrant/windows**) 
+* SSH to Virtual Machine (`vagrant ssh`)
 
 ### Tips
 

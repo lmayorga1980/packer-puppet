@@ -5,9 +5,9 @@
     },
   "builders": [{
     "type": "vmware-iso",
-    "iso_url": "/Users/lmo0/isofiles/en_windows_server_2008_r2_with_sp1_vl_build_x64_dvd_617403.iso",
+    "iso_url": "iso/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso",
     "iso_checksum_type": "md5",
-    "iso_checksum": "8d397b69135d207452a78c3c3051339d",
+    "iso_checksum": "6467c3875955df4514395f0afcaaa62a",
     "headless": false,
     "boot_wait": "2m",
     "ssh_username": "vagrant",
@@ -20,7 +20,7 @@
     "vnc_port_min": 5900,
     "vnc_port_max": 5980,
     "floppy_files": [
-      "./http/cfg_windows/win2008r2core/Autounattend.xml",
+      "./cfg_windows/win7/Autounattend.xml",
       "./scripts/win-updates.ps1",
       "./scripts/openssh.ps1"
     ],
@@ -34,8 +34,8 @@
     },
     {
     "type": "virtualbox-iso",
-    "iso_url": "/Users/lmo0/isofiles/en_windows_server_2008_r2_with_sp1_vl_build_x64_dvd_617403.iso",
-    "iso_checksum": "8d397b69135d207452a78c3c3051339d",
+    "iso_url": "/Users/lmo0/isofiles/en_windows_7_enterprise_with_sp1_x64_dvd_u_677651.iso",
+    "iso_checksum": "6467c3875955df4514395f0afcaaa62a",
     "iso_checksum_type": "md5",
     "guest_os_type": "Windows2008_64",
     "disk_size": 61440,
@@ -48,7 +48,7 @@
     "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.6.iso",
     "boot_wait": "2m",
     "floppy_files": [
-      "./http/cfg_windows/win2008r2core/Autounattend.xml",
+      "./http/cfg_windows/win7/Autounattend.xml",
       "./scripts/win-updates.ps1",
       "./scripts/openssh.ps1",
       "./scripts/oracle-cert.cer"
@@ -73,7 +73,7 @@
    "post-processors" : [
     {
     "type": "vagrant",
-    "output": "win2008_r2_core_{{.Provider}}.box"
+    "output": "win7_sp1_{{.Provider}}.box"
     }
     ]
 }

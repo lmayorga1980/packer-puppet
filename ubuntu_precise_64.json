@@ -3,25 +3,84 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/virtualbox.sh",
+        "scripts/base.sh",
         "scripts/vagrant.sh"
       ],
+      "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
+     },
+     {
+      "type": "shell",
+      "script": "scripts/fusion.sh",
       "override": {
-        "virtualbox-iso": {
-          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
-        }
+          "virtualbox-iso": {
+             "execute_command": "echo 'this is not a vmware machine'"
+          },
+          "vmware-iso": {
+              "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+          }
+      }
+    },
+     {
+      "type": "shell",
+      "script": "scripts/virtualbox.sh",
+      "override": {
+          "virtualbox-iso": {
+             "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'"
+          },
+          "vmware-iso": {
+              "execute_command": "echo 'this is not a virtualbox machine'"
+          }
       }
     }
-  ],
+   ],
     "variables": {
         "ssh_name": "vagrant",
         "ssh_pass": "vagrant",
-        "hostname": "packerhost"
+        "hostname": "puppetmaster"
     },
-  "builders": [{
+  "builders": [
+    {
+      "type": "vmware-iso",
+      "vm_name": "ubuntu1204",
+      "boot_wait": "30s",
+      "disk_size": 20480,
+      "guest_os_type": "ubuntu-64",
+      "http_directory" : "http/cfg_ubuntu",
+      "http_port_min" : 9001,
+      "http_port_max" : 9001,
+      "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
+      "iso_checksum_type": "md5",
+      "iso_url": "iso/ubuntu-12.04.3-server-amd64.iso",
+      "skip_compaction": true,
+      "ssh_username": "{{user `ssh_name`}}",
+      "ssh_password": "{{user `ssh_pass`}}",
+      "ssh_port": 22,
+      "ssh_skip_request_pty": true,
+      "ssh_wait_timeout": "90m",
+      "boot_command": [
+      "<esc><esc><enter><wait>",
+      "/install/vmlinuz noapic ",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+      "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+      "hostname={{user `hostname`}} ",
+      "fb=false debconf/frontend=noninteractive ",
+      "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+      "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+      "initrd=/install/initrd.gz -- <enter>"
+      ],
+      "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
+      "tools_upload_flavor": "linux",
+      "vmx_data": {
+        "memsize": "2048",
+        "numvcpus": "2",
+        "cpuid.coresPerSocket": "1",
+        "scsi0.virtualDev": "lsisas1068"
+      }
+    },
+    {
     "type": "virtualbox-iso",
     "guest_os_type": "Ubuntu_64",
-    "iso_url": "/Users/lmo0/isofiles/ubuntu-12.04.3-server-amd64.iso",
+    "iso_url": "iso/ubuntu-12.04.3-server-amd64.iso",
     "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
     "iso_checksum_type": "md5",
     "ssh_username": "{{user `ssh_name`}}",
@@ -32,7 +91,6 @@
     "http_port_min" : 9001,
     "http_port_max" : 9001,
     "guest_additions_path": "VBoxGuestAdditions_4.3.6.iso",
-    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.6.iso",
     "boot_command": [
     "<esc><esc><enter><wait>",
     "/install/vmlinuz noapic ",
@@ -46,7 +104,7 @@
     ],
     "shutdown_command": "echo {{user `ssh_pass`}} | sudo -S shutdown -P now",
     "vboxmanage": [
-    ["modifyvm", "{{.Name}}", "--memory", "4800"],
+    ["modifyvm", "{{.Name}}", "--memory", "2048"],
     ["modifyvm", "{{.Name}}", "--cpus", "2"]
     ]
     }],

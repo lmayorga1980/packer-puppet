@@ -1,9 +1,6 @@
 ### Packer/Vagrant/Puppet PE Demo
 
-Create a virtual machine box vagrant ready.(CentOS, Ubuntu, OracleLinux, Windows). Base on ...
-
-* [https://github.com/smerrill/packer-templates]("https://github.com/smerrill/packer-templates")
-* [https://github.com/joefitzgerald/packer-windows]("https://github.com/joefitzgerald/packer-windows")
+Create a virtual machine vagrant ready.(CentOS, Ubuntu, Oracle Linux, Windows). 
 
 ### Requirements
 
@@ -18,7 +15,6 @@ Packer reads a template configuration file in json format and installs the OS fr
 
 * Modify the templates if you want to use full http urls or specific local paths for iso files. 
 * Verify the **http** directory that contains the kickstart files for custom changes.
-* For RedHat distributions you need to uncompress the .iso files into the http directory or you might want to point to different location.
 * Run `packer build <template_name>.json` 
 
 ### Oracle Linux Example

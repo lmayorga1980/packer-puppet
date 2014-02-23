@@ -21,18 +21,15 @@
   "builders": [{
     "type": "virtualbox-iso",
     "guest_os_type": "RedHat_64",
-    "iso_url": "/Users/lmo0/isofiles/CentOS-6.4-x86_64-minimal.iso",
+    "iso_url": "iso/CentOS-6.4-x86_64-minimal.iso",
     "iso_checksum": "4a5fa01c81cc300f4729136e28ebe600",
     "iso_checksum_type": "md5",
     "ssh_username": "{{user `ssh_name`}}",
     "ssh_password": "{{user `ssh_pass`}}",
     "guest_additions_path": "VBoxGuestAdditions_4.3.6.iso",
-    "guest_additions_url": "/Users/lmo0/isofiles/VBoxGuestAdditions_4.3.6.iso",
     "ssh_wait_timeout": "90m",
     "http_directory" : "http",
     "ssh_port": 22,
-    "http_port_min" : 9001,
-    "http_port_max" : 9001,
     "boot_command": [
     "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/cfg_centos/ks.cfg<enter><wait>"
     ],

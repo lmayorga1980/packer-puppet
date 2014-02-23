@@ -46,8 +46,6 @@
       "disk_size": 20480,
       "guest_os_type": "ubuntu-64",
       "http_directory" : "http/cfg_ubuntu",
-      "http_port_min" : 9001,
-      "http_port_max" : 9001,
       "iso_checksum": "2cbe868812a871242cdcdd8f2fd6feb9",
       "iso_checksum_type": "md5",
       "iso_url": "iso/ubuntu-12.04.3-server-amd64.iso",
@@ -88,8 +86,6 @@
     "ssh_port": 22,
     "ssh_wait_timeout": "90m",
     "http_directory" : "http/cfg_ubuntu",
-    "http_port_min" : 9001,
-    "http_port_max" : 9001,
     "guest_additions_path": "VBoxGuestAdditions_4.3.6.iso",
     "boot_command": [
     "<esc><esc><enter><wait>",
@@ -112,7 +108,7 @@
     {
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "ubuntu_precise_64{{.Provider}}.box"
+    "output": "ubuntu_precise_64_{{.Provider}}.box"
     }
     ]
 }

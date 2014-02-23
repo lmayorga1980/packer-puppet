@@ -21,8 +21,6 @@ Packer reads a template configuration file in json format and installs the OS fr
 * For RedHat distributions you need to uncompress the .iso files into the http directory or you might want to point to different location.
 * Run `packer build <template_name>.json` 
 
-![packer ouput](http://github.com/lmayorga1980/packer-demo/raw/master/packer-image.png)
-
 ### Oracle Linux Example
 
 * Create Oracle Linux Image `packer build -only=virtualbox-iso oracle.json`
